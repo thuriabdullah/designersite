@@ -6,8 +6,8 @@ import java.util.Date;
 @Table(name="users")
 public class User {
      @Id
-     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String fullName;
     private String userName;
     private int password;
@@ -15,8 +15,7 @@ public class User {
     private Date creationDate;
     private boolean status;
     public User(){}
-    public User(Long userId, String fullName, String userName, int password, int age, Date creationDate, boolean status) {
-        this.userId = userId;
+    public User( String fullName, String userName, int password, int age, Date creationDate, boolean status) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
@@ -25,12 +24,12 @@ public class User {
         this.status = status;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullName() {

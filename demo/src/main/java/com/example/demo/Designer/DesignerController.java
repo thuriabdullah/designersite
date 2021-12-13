@@ -1,7 +1,5 @@
 package com.example.demo.Designer;
 
-import com.example.demo.Servies.Servies;
-import com.example.demo.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +11,12 @@ import java.util.List;
 
 @CrossOrigin("*")
 public class DesignerController {
-    private final  DesignerServies designerServies;
-    @Autowired
+   private DesignerServies designerServies;
+@Autowired
     public DesignerController(DesignerServies designerServies) {
         this.designerServies = designerServies;
     }
+
 
     @GetMapping
     public List<Designer> getAllDesigner(){
@@ -32,10 +31,10 @@ public class DesignerController {
         return  designerServies.addDesigner(designer);
     }
     @GetMapping(path="/{userName}")
-    public Designer getByusername(@PathVariable String userName){
-
-        return designerServies.getByUserName(userName);
-    }
+//    public Designer getByusername(@PathVariable String userName){
+//
+//        return designerServies.getByUserName(userName);
+//    }
 
     @PutMapping("/{id}")
     public void updateDesigner(@PathVariable String id, @RequestBody Designer data) {
@@ -45,6 +44,14 @@ public class DesignerController {
     public  void deleteDesigner(@PathVariable String id ){
         designerServies.deleteDesigner(id);
     }
+
+
+
+
+
+
+
+
 //    @GetMapping
 
 //    public List<Servies> getDesignerByType(@PathVariable String type){

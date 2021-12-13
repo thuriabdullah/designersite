@@ -31,7 +31,7 @@ public class GalleryServies {
         Gallery gallery=galleryRepository.findById( gallery_id).orElse(null);
         if(gallery != null){
             gallery.setPictures(data.getPictures());
-            gallery.setGalleryID(data.getGalleryID());
+            gallery.setId(data.getId());
             gallery.setName(data.getName());
             gallery.setDescription(data.getDescription());
         }

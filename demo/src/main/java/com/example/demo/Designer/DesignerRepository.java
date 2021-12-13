@@ -7,8 +7,9 @@ import java.util.List;
 
 @Repository
 public interface DesignerRepository extends JpaRepository <Designer,Long>{
-    Designer getByUserName(String userName);
-//    List <Designer> getAllByDesignType(List designType);
+//    Designer getByUserName(String userName);
+//    List<Designer> getAllByDesignType (List<String> designerType);
+////    List <Designer> getAllByDesignType(List designType);
 
 
 }

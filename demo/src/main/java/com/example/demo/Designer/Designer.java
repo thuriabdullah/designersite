@@ -4,15 +4,14 @@ import com.example.demo.Servies.Servies;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="Designers")
 public class Designer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long  designerNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String fullName;
     private String userName;
     private int password;
@@ -21,34 +20,43 @@ public class Designer {
     @Column
     @ElementCollection(targetClass=String.class)
     private List<String> protofolio;
-    private boolean Availabilty;
+    private boolean availabilty;
     @Column
     @ElementCollection(targetClass=String.class)
     private  List<String> designType;
+
+
+//    designerType : {
+//    "internal design",
+//    "external design"
+//    }
+//    }
+
 @JsonIgnore
 @OneToMany(mappedBy = "designer")
 private List<Servies> servies;
-    public Designer(){}
 
-    public Designer(Long designerNumber, String fullName, String userName, int password, int age, double rate, List<String> protofolio, boolean availabilty, List<String> designType, List<Servies> servies) {
-        this.designerNumber = designerNumber;
+
+
+    public Designer(String fullName, String userName, int password, int age, double rate, List<String> protofolio, boolean availabilty, List<String> designType, List<Servies> servies) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
         this.age = age;
         this.rate = rate;
         this.protofolio = protofolio;
-        Availabilty = availabilty;
+        this.availabilty = availabilty;
         this.designType = designType;
         this.servies = servies;
     }
+    public Designer(){}
 
-    public Long getDesignerNumber() {
-        return designerNumber;
+    public Long getId() {
+        return id;
     }
 
-    public void setDesignerNumber(Long designerNumber) {
-        this.designerNumber = designerNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getRate() {
@@ -60,11 +68,11 @@ private List<Servies> servies;
     }
 
     public boolean isAvailabilty() {
-        return Availabilty;
+        return availabilty;
     }
 
     public void setAvailabilty(boolean availabilty) {
-        Availabilty = availabilty;
+        availabilty = availabilty;
     }
 
     public List<Servies> getServies() {
@@ -123,4 +131,19 @@ private List<Servies> servies;
         this.designType = designType;
     }
 
+    @Override
+    public String toString() {
+        return "Designer{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password=" + password +
+                ", age=" + age +
+                ", rate=" + rate +
+                ", protofolio=" + protofolio +
+                ", availabilty=" + availabilty +
+                ", designType=" + designType +
+                ", servies=" + servies +
+                '}';
+    }
 }

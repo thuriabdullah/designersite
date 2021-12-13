@@ -2,45 +2,55 @@ package com.example.demo.Servies;
 
 import com.example.demo.Designer.Designer;
 import com.example.demo.Gallery.Gallery;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="servicies")
+@Table(name="services")
 public class Servies {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long serviesID ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
     private String title;
     private String description;
     private Date duration;
     private double price;
     private String type;
-@ManyToOne(fetch = FetchType.EAGER)
+@ManyToOne(fetch = FetchType.EAGER, optional = false)
+//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//@JoinColumn(name ="designer_id")
 private Designer designer;
 @OneToOne(fetch = FetchType.EAGER)
 private Gallery gallery;
-    public Servies(){}
 
 
-    public Servies(Long serviesID, String title, String description, Date duration, double price, String type, Designer designer, Gallery gallery) {
-        this.serviesID = serviesID;
+    public Servies(String title, String description, Date duration, double price, String type,Designer designer) {
+
         this.title = title;
         this.description = description;
         this.duration = duration;
         this.price = price;
         this.type = type;
-        this.designer = designer;
-        this.gallery = gallery;
+        this.designer=designer;
+    }
+    public Servies(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getServiesID() {
-        return serviesID;
+        return id;
     }
 
     public void setServiesID(Long serviesID) {
-        this.serviesID = serviesID;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -58,8 +68,6 @@ private Gallery gallery;
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public double getPrice() {
         return price;
@@ -100,5 +108,26 @@ private Gallery gallery;
 
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;
+    }
+
+//    always try to add to string to your classes
+
+    @Override
+    public String toString() {
+        return "Servies{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", duration=" + duration +
+                ", price=" + price +
+                ", type='" + type + '\'' +
+                ", designer=" + designer +
+                ", gallery=" + gallery +
+                '}';
+        /*"title":"ffgghj",
+    "description":"fghjkl;",
+    "duration":"2020-12-03",
+    "price":200,
+    "type":"rtyy"*/
     }
 }

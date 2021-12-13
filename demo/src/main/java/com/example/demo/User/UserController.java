@@ -8,10 +8,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path="user")
 @CrossOrigin("*")
-public class UserControoler {
+public class UserController {
     private final UserServies userServies;
 @Autowired
-    public UserControoler(UserServies userServies) {
+    public UserController(UserServies userServies) {
         this.userServies = userServies;
     }
 

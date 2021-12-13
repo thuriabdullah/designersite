@@ -1,17 +1,16 @@
 package com.example.demo.Gallery;
 
 import com.example.demo.Servies.Servies;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.awt.*;
 import java.util.List;
 
 @Entity
 @Table(name="Galleries")
 public class Gallery {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long galleryID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     @ElementCollection(targetClass=String.class)
     private List<String> pictures;
@@ -23,20 +22,19 @@ public class Gallery {
 
     public Gallery(){}
 
-    public Gallery(Long galleryID, List<String> pictures, String name, String description, Servies servies) {
-        this.galleryID = galleryID;
+    public Gallery(List<String> pictures, String name, String description, Servies servies) {
         this.pictures = pictures;
         this.name = name;
         Description = description;
         this.servies = servies;
     }
 
-    public Long getGalleryID() {
-        return galleryID;
+    public Long getId() {
+        return id;
     }
 
-    public void setGalleryID(Long galleryID) {
-        this.galleryID = galleryID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
